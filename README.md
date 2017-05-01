@@ -4,7 +4,8 @@
 
 A `go:generate` tool to generate some kind of [result types](https://en.wikipedia.org/wiki/Result_type) (except it isn't generic nor monadic).
 
-It helps ensure a type cannot be in an invalid state, and is semantically more correct than a double return:
+It helps ensure a type cannot be in an invalid state, and is semantically more correct than a double return.
+I also think it is nicer to read, but that is very subjective.
 
 The traditional Go way:
 ```go
@@ -42,14 +43,13 @@ func buildSomething(someParam interface{}) somethingResult {
 }
 
 func main() {
-    smthing, err := buildSomething(nil)
-    if err != nil {
-        // We did check the error, so errcheck linter won't complain
+    smthingResult := buildSomething(nil)
+    if err := smthingResult.GetError(); err != nil {
         log.Println(err)
     }
-    // But we did not return! We still have our `something`, but in an invalid state.
-    // Sometimes it is ok, it will just panic when we try to call a method on it (because of a nil pointer typically).
-    // Other times it may be worse, and you will have to check for invalid state in your methods implementations.
+    // Here, if there was an error, we will immediately panic.
+    // This way, at no point in time did the user have an invalid `something`.
+    smthing := smthingResult.GetSomething()
     smthing.SomeMethod()
 }
 ```
