@@ -9,9 +9,10 @@ import (
 	"github.com/hectorj/go-resultgen/tests"
 )
 
+//go:generate go run ../main.go Dummy --strict --tags=strict --output=dummy_result_strict.go
+
 /*
 // In the tests package, we have:
-//go:generate go-resultgen Dummy --strict --tags=strict --output=dummy_result_strict.go
 type Dummy struct {
 	ID int
 }

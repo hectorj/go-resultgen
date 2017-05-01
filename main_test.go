@@ -23,6 +23,8 @@ func TestOutputHasNotChanged(t *testing.T) {
 
 	cmd := exec.Command("go", "generate", "./tests")
 	if err := cmd.Run(); err != nil {
+		output, _ := cmd.CombinedOutput()
+		t.Error(string(output))
 		t.Fatal(err)
 	}
 

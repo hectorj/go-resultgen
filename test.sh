@@ -3,6 +3,8 @@ set -e
 
 function join { local IFS="$1"; shift; echo "$*"; }
 
+go install .
+
 echo "== Starting lint..."
 gometalinter --vendored-linters --vendor --disable-all --enable=gofmt --enable=goimports --enable=gocyclo --cyclo-over=10
 echo "== Finished lint."

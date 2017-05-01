@@ -9,9 +9,10 @@ import (
 	"github.com/hectorj/go-resultgen/tests"
 )
 
+//go:generate go-resultgen Dummy --tags=!strict
+
 /*
 // In the tests package, we have:
-//go:generate go-resultgen Dummy --tags=!strict
 type Dummy struct {
 	ID int
 }
