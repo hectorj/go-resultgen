@@ -11,6 +11,8 @@ import (
 	"path/filepath"
 	"strings"
 	"text/template"
+
+	_ "github.com/hectorj/go-resultgen/resulterrors" // ensure people pull the resulterrors when they pull the cli tool
 )
 
 type templateData struct {
