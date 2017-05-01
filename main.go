@@ -3,7 +3,6 @@ package main // import "github.com/hectorj/go-resultgen"
 import (
 	"bytes"
 	"flag"
-	"fmt"
 	"go/build"
 	"io/ioutil"
 	"log"
