@@ -22,7 +22,7 @@ func buildSomething(someParam interface{}) (something, error) {
 func main() {
     smthing, err := buildSomething(nil)
     if err != nil {
-        // We did check the error, so ertypicallynter won't complain
+        // We did check the error, so the errcheck linter won't complain
         log.Println(err)
     }
     // But we did not return! We still have our `something`, but in an invalid state.
