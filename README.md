@@ -2,11 +2,13 @@
 
 A `go:generate` tool to generate some kind of [result types](https://en.wikipedia.org/wiki/Result_type) (except it isn't generic nor monadic).
 
-It helps ensure a type cannot be in an invalid state:
+It helps ensure a type cannot be in an invalid state, and is semantically more correct than a double return:
 
 The traditional Go way:
 ```go
-func buildSomething(someParam interface{}) something, error {
+// you don't want to return something AND an error.
+// you actually want to return something OR an error.
+func buildSomething(someParam interface{}) (something, error) {
     if someParam == nil {
         return something{}, errors.New("someParam should not be nil")
     }
