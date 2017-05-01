@@ -56,7 +56,6 @@ func main() {
 	data.GeneratedInterfaceName = upperCaseFirst(data.TypeName + "Result")
 
 	outputBuffer := bytes.NewBuffer(nil)
-	fmt.Printf("%+v\n", data)
 	err = tpl.Execute(outputBuffer, data)
 	if err != nil {
 		log.Fatalln(err)
