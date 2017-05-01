@@ -3,10 +3,10 @@
 package tests_test
 
 import (
+	"errors"
 	"fmt"
 
 	"github.com/hectorj/go-resultgen/tests"
-	"github.com/pkg/errors"
 )
 
 /*
