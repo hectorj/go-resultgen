@@ -1,5 +1,7 @@
 # github.com/hectorj/go-resultgen
 
+[![Build Status](https://travis-ci.org/hectorj/go-resultgen.svg?branch=master)](https://travis-ci.org/hectorj/go-resultgen)
+
 A `go:generate` tool to generate some kind of [result types](https://en.wikipedia.org/wiki/Result_type) (except it isn't generic nor monadic).
 
 It helps ensure a type cannot be in an invalid state, and is semantically more correct than a double return:
@@ -51,3 +53,15 @@ func main() {
     smthing.SomeMethod()
 }
 ```
+
+## Installation
+
+`go get -u github.com/hectorj/go-resultgen`
+
+## Usage
+
+It is meant to be used with the [`go generate`](https://blog.golang.org/generate) command.
+
+See [the example](./tests/dummy_example_test.go).
+
+There is also a "strict" mode, that will panic immediately if you try to get the value without checking the error at least once. I recommend it when running your tests. See [this other example](./tests/dummy_strict_example_test.go).
