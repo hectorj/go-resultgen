@@ -11,7 +11,7 @@ import (
 
 /*
 // In the tests package, we have:
-//go:generate go run ../main.go Dummy --tags=!strict
+//go:generate go-resultgen Dummy --tags=!strict
 type Dummy struct {
 	ID int
 }
