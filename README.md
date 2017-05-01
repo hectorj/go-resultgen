@@ -4,6 +4,17 @@
 
 A `go:generate` tool to generate some kind of [result types](https://en.wikipedia.org/wiki/Result_type) (except it isn't generic nor monadic).
 
+The generated type exposes this interface:
+
+```go
+type MyTypeResult interface {
+	// GetError tells us if the result is an error or not (in which case it returns `nil`).
+	GetError() error
+	// GetMyType gives us the encapsulated result value. Panics if the result is actually an error.
+	GetMyType() MyType
+}
+```
+
 It helps ensure a type cannot be in an invalid state, and is semantically more correct than a double return.
 I also think it is nicer to read, but that is very subjective.
 
