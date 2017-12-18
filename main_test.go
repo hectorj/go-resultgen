@@ -28,6 +28,13 @@ func TestOutputHasNotChanged(t *testing.T) {
 		t.Fatal(err)
 	}
 
+	cmdStrict := exec.Command("go", "generate", "-tags", "strict", "./tests")
+	if err := cmdStrict.Run(); err != nil {
+		output, _ := cmdStrict.CombinedOutput()
+		t.Error(string(output))
+		t.Fatal(err)
+	}
+
 	newNonStrictContent, err := ioutil.ReadFile(nonStrictFilePath)
 	if err != nil {
 		t.Fatal(err)
