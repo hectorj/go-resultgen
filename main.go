@@ -13,11 +13,11 @@ import (
 )
 
 type templateData struct {
-	PkgName                string
-	GeneratedStructName    string
-	TypeName               string
-	StrictMode             bool
-	BuildTags              string
+	PkgName             string
+	GeneratedStructName string
+	TypeName            string
+	StrictMode          bool
+	BuildTags           string
 }
 
 var tpl = template.Must(template.New("output").Parse(tplSrc))
