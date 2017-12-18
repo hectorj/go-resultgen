@@ -10,17 +10,13 @@ import (
 
 // DummyResult is a result type for Dummy.
 // See https://en.wikipedia.org/wiki/Result_type .
-type DummyResult interface {
-	// GetError tells us if the result is an error or not (in which case it returns `nil`).
-	GetError() error
-	// GetDummy gives us the encapsulated result value. Panics if the result is actually an error.
-	GetDummy() Dummy
-	// isDummyResult is a dummy method, just here to make sure only our implementation satisfies the interface.
-	isDummyResult()
+type DummyResult struct {
+	value Dummy
+	err error
 }
 
 func NewValidDummyResult(value Dummy) DummyResult {
-	return dummyResult{
+	return DummyResult{
 		value: value,
 		err: nil,
 	}
@@ -30,23 +26,18 @@ func NewFailedDummyResult(err error) DummyResult {
 	if err == nil {
 		panic(errors.New("cannot create failed result from nil error"))
 	}
-	return dummyResult{
+	return DummyResult{
 		err: err,
 	}
 }
 
-type dummyResult struct {
-	value Dummy
-	err error
-}
+func (r DummyResult) isDummyResult() {}
 
-func (r dummyResult) isDummyResult() {}
-
-func (r dummyResult) GetError() error {
+func (r DummyResult) GetError() error {
 	return r.err
 }
 
-func (r dummyResult) GetDummy() Dummy {
+func (r DummyResult) GetDummy() Dummy {
 	if r.err != nil {
 		panic(r.err)
 	}
